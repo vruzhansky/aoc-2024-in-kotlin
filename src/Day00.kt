@@ -11,10 +11,10 @@ fun main() {
     }
 
     val testInput = readInput("Day${DAY}_test")
-    check(part1(testInput) == 0)
-    check(part2(testInput) == 0)
+    check(part1(testInput).also { println(it) } == 0)
+    check(part2(testInput).also { println(it) } == 0)
 
     val input = readInput("Day${DAY}")
-    part1(input).println()
-    part2(input).println()
+    check(part1(input).also { println(it) } == 0)
+    check(part2(input).also { println(it) } == 0)
 }
