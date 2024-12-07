@@ -2,7 +2,7 @@ import Direction.U
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.time.Duration.Companion.nanoseconds
+import kotlin.time.measureTime
 
 private const val DAY = "06"
 
@@ -78,7 +78,6 @@ fun main() {
         val (grid, start) = parse(input)
         val pointsInWay = pointsInWay(start, grid)
         val loops = AtomicInteger()
-        val current = System.nanoTime()
         runBlocking {
             pointsInWay.forEach { point ->
                 launch {
@@ -89,7 +88,6 @@ fun main() {
 
             }
         }
-        println("Done in ${(System.nanoTime() - current).nanoseconds.inWholeMilliseconds} ms")
         return loops.get()
     }
 
@@ -98,6 +96,10 @@ fun main() {
     check(part2(testInput).also { println(it) } == 6)
 
     val input = readInput("Day${DAY}")
-    check(part1(input).also { println(it) } == 4656)
-    check(part2(input).also { println(it) } == 1575)
+    measureTime {
+        check(part1(input).also { println(it) } == 4656)
+    }.also { println("Done in ${it.inWholeMilliseconds} ms") }
+    measureTime {
+        check(part2(input).also { println(it) } == 1575)
+    }.also { println("Done in ${it.inWholeMilliseconds} ms") }
 }
