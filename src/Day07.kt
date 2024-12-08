@@ -12,6 +12,8 @@ fun main() {
         return resAndNums
     }
 
+    fun Long.addToResults(target: Long, results: MutableSet<Long>) = takeIf { it <= target }?.let { results.add(it) }
+
     fun part1(input: List<String>): Long {
         val resAndNums = parse(input)
 
@@ -21,8 +23,8 @@ fun main() {
             for (num in nums.drop(1)) {
                 val newResults = HashSet<Long>()
                 for (result in results) {
-                    newResults.add(result + num)
-                    newResults.add(result * num)
+                    (result + num).addToResults(res, newResults)
+                    (result * num).addToResults(res, newResults)
                 }
                 results = newResults
             }
@@ -41,9 +43,9 @@ fun main() {
             for (num in nums.drop(1)) {
                 val newResults = HashSet<Long>()
                 for (result in results) {
-                    (result + num).takeIf { it <= res }?.let { newResults.add(it) }
-                    (result * num).takeIf { it <= res }?.let { newResults.add(it) }
-                    ("$result$num".toLong()).takeIf { it <= res }?.let { newResults.add(it) }
+                    (result + num).addToResults(res, newResults)
+                    (result * num).addToResults(res, newResults)
+                    "$result$num".toLong().addToResults(res, newResults)
                 }
                 results = newResults
             }
