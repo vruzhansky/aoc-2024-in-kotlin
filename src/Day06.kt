@@ -1,4 +1,5 @@
 import Direction.U
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.atomic.AtomicInteger
@@ -61,7 +62,7 @@ fun main() {
         val (grid, start) = parse(input)
         val pointsInWay = pointsInWay(start, grid)
         val loops = AtomicInteger()
-        runBlocking {
+        runBlocking(Dispatchers.Default) {
             pointsInWay.forEach { point ->
                 launch {
                     val mutableGrid = grid.map { it.toMutableList() }
