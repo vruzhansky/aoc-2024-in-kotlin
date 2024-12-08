@@ -33,13 +33,11 @@ fun main() {
         return firstList.fold(0) { acc, i -> acc + i * freqMap.getOrDefault(i, 0) }
     }
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
     val testInput = readInput("Day${DAY}_test")
-    check(part1(testInput).also { println(it) } == 11)
-    check(part2(testInput).also { println(it) } == 31)
+    checkAnMeasureTime(11) { part1(testInput) }
+    checkAnMeasureTime(31) { part2(testInput) }
 
-    // Read the input from the `src/Day01.txt` file.
     val input = readInput("Day${DAY}")
-    check(part1(input).also { println(it) } == 2580760)
-    check(part2(input).also { println(it) } == 25358365)
+    checkAnMeasureTime(2580760) { part1(input) }
+    checkAnMeasureTime(25358365) { part2(input) }
 }

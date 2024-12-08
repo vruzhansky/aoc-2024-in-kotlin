@@ -1,17 +1,9 @@
-import kotlin.time.measureTime
-
 private const val DAY = "08"
 
 fun main() {
-   data class Point(val r: Int, val c: Int) {
-       operator fun minus(point: Point) = Point(this.r - point.r, this.c - point.c)
-       operator fun plus(point: Point) = Point(this.r + point.r, this.c + point.c)
-   }
-
-   fun List<List<Char>>.inGrid(point: Point) = point.r in indices && point.c in this[0].indices
 
     fun parse(input: List<String>): Pair<List<List<Char>>, Map<Char, List<Point>>> {
-        val grid = input.map { it.toCharArray().toList() }
+        val grid = input.toCharGrid()
         val charMap = mutableMapOf<Char, MutableList<Point>>()
 
         grid.forEachIndexed { rowIdx, row ->
@@ -33,8 +25,8 @@ fun main() {
                 for (j in i + 1 until points.size) {
                     val diff = points[j] - points[i]
 
-                    val cand1= points[i] - diff
-                    val cand2= points[j] + diff
+                    val cand1 = points[i] - diff
+                    val cand2 = points[j] + diff
 
                     if (grid.inGrid(cand1)) {
                         locos.add(cand1)
@@ -78,14 +70,10 @@ fun main() {
     }
 
     val testInput = readInput("Day${DAY}_test")
-    check(part1(testInput).also { println(it) } == 14)
-    check(part2(testInput).also { println(it) } == 34)
+    checkAnMeasureTime(14) { part1(testInput) }
+    checkAnMeasureTime(34) { part2(testInput) }
 
     val input = readInput("Day${DAY}")
-    measureTime {
-        check(part1(input).also { println(it) } == 348)
-    }.also { println("Done in ${it.inWholeMilliseconds} ms") }
-    measureTime {
-        check(part2(input).also { println(it) } == 1221)
-    }.also { println("Done in ${it.inWholeMilliseconds} ms") }
+    checkAnMeasureTime(348) { part1(input) }
+    checkAnMeasureTime(1221) { part2(input) }
 }

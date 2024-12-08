@@ -1,5 +1,3 @@
-import kotlin.time.measureTime
-
 private const val DAY = "00"
 
 fun main() {
@@ -13,14 +11,10 @@ fun main() {
     }
 
     val testInput = readInput("Day${DAY}_test")
-    check(part1(testInput).also { println(it) } == 0)
-    check(part2(testInput).also { println(it) } == 0)
+    checkAnMeasureTime(0) { part1(testInput) }
+    checkAnMeasureTime(0) { part2(testInput) }
 
     val input = readInput("Day${DAY}")
-    measureTime {
-        check(part1(input).also { println(it) } == 0)
-    }.also { println("Done in ${it.inWholeMilliseconds} ms") }
-    measureTime {
-        check(part2(input).also { println(it) } == 0)
-    }.also { println("Done in ${it.inWholeMilliseconds} ms") }
+    checkAnMeasureTime(0) { part1(input) }
+    checkAnMeasureTime(0) { part2(input) }
 }

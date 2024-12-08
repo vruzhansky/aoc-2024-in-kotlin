@@ -58,10 +58,10 @@ fun main() {
     }
 
     val testInput = readInput("Day${DAY}_test")
-//    check(part1(testInput).also { println(it) } == 18)
-    check(part2(testInput).also { println(it) } == 9)
+    //    checkAnMeasureTime(18) { part1(testInput) }
+    checkAnMeasureTime(9) { part2(testInput) }
 
     val input = readInput("Day${DAY}")
-    check(part1(input).also { println(it) } == 2468)
-    check(part2(input).also { println(it) } == 1864)
+    checkAnMeasureTime(2468) { part1(input) }
+    checkAnMeasureTime(1864) { part2(input) }
 }
