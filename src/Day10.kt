@@ -15,14 +15,14 @@ fun main() {
 
     fun explore(trail: List<Point>, grid: List<List<Int>>, trails: MutableList<List<Point>>) {
         val from = trail.last()
-        val height = grid[from.r][from.c]
+        val height = grid.getAt(from)
         if (height == 9) {
             trails.add(trail)
             return
         }
-        val neighbours = from.neighbours()
+        val neighbours = from.neighbours().filter { grid.inGrid(it) }
         neighbours.forEach { neighbour ->
-            if (grid.inGrid(neighbour) && grid[neighbour.r][neighbour.c] == height + 1) {
+            if (grid.getAt(neighbour) == height + 1) {
                 explore(trail + neighbour, grid, trails)
             }
         }
