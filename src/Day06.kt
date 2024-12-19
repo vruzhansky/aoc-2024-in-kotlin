@@ -1,7 +1,11 @@
-import Direction.U
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import utils.Direction
+import utils.Direction.U
+import utils.Point
+import utils.getAt
+import utils.inGrid
 import java.util.concurrent.atomic.AtomicInteger
 
 private const val DAY = "06"

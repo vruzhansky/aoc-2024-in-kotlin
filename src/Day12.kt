@@ -1,4 +1,8 @@
-import Direction2.*
+import utils.Direction2.*
+import utils.Point
+import utils.getAt
+import utils.inGrid
+import utils.toCharGrid
 
 private const val DAY = "12"
 

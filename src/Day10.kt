@@ -1,3 +1,8 @@
+import utils.Point
+import utils.getAt
+import utils.inGrid
+import utils.toIntGrid
+
 private const val DAY = "10"
 
 fun main() {
