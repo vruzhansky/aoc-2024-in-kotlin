@@ -1,3 +1,5 @@
+import java.util.*
+
 private const val DAY = "19"
 
 fun main() {
@@ -18,6 +20,29 @@ fun main() {
         }
         cache[towel] = found
         return found
+    }
+
+    fun test11(stripes: List<String>, towel: String, cache: MutableMap<String, Boolean> = mutableMapOf()): Boolean {
+        val stack = LinkedList<String>()
+        stack.push(towel)
+        while (stack.isNotEmpty()) {
+            val next = stack.pop()
+            if (cache.containsKey(next)) {
+                return cache[next]!!
+            }
+            stripes.forEach { stripe ->
+                if (next.startsWith(stripe)) {
+                    val withoutPrefix = next.removePrefix(stripe)
+                    if (withoutPrefix.isEmpty())  {
+                        return true
+                    } else {
+                        cache[next] = false
+                        stack.push(withoutPrefix)
+                    }
+                }
+            }
+        }
+        return false
     }
 
     fun test2(stripes: List<String>, towel: String, cache: MutableMap<String, Long> = mutableMapOf()): Long {
