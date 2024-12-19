@@ -2,7 +2,7 @@ private const val DAY = "19"
 
 fun main() {
 
-    fun test1(stripes: List<String>, towel: String, cache: MutableMap<String, Boolean>): Boolean {
+    fun test1(stripes: List<String>, towel: String, cache: MutableMap<String, Boolean> = mutableMapOf()): Boolean {
         if (towel.isEmpty()) {
             return true
         }
@@ -20,7 +20,7 @@ fun main() {
         return found
     }
 
-    fun test2(stripes: List<String>, towel: String, cache: MutableMap<String, Long>): Long {
+    fun test2(stripes: List<String>, towel: String, cache: MutableMap<String, Long> = mutableMapOf()): Long {
         if (towel.isEmpty()) {
             return 1L
         }
@@ -41,11 +41,10 @@ fun main() {
         val stripes = input.first().split(", ")
         val towels = input.drop(2)
 
-        val cache = mutableMapOf<String, Boolean>()
         var count = 0
         towels.forEach {
             println("Testing: $it")
-            val res = test1(stripes, it, cache)
+            val res = test1(stripes, it)
             if (res) {
                 println("Matched!")
                 count++
@@ -61,11 +60,10 @@ fun main() {
         val stripes = input.first().split(", ")
         val towels = input.drop(2)
 
-        val cache = mutableMapOf<String, Long>()
         var count = 0L
         towels.forEach {
             println("Testing: $it")
-            val res = test2(stripes, it, cache)
+            val res = test2(stripes, it)
             if (res > 0) {
                 println("Matched! $res")
             } else {
