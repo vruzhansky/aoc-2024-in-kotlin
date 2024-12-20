@@ -59,8 +59,8 @@ fun main() {
 
         val cheats = mutableListOf<Pair<Point, Point>>()
         path.dropLast(1).forEach { point ->
-            radius.flatMap { r -> point.circle(r).map { it to r } }
-                .asSequence()
+            radius.asSequence()
+                .flatMap { r -> point.circle(r).map { it to r } }
                 .filter { (p, r) -> pathIdx.contains(p) && pathIdx[p]!! - pathIdx[point]!! - r >= target }
                 .forEach { (p, _) -> cheats.add(point to p) }
         }
