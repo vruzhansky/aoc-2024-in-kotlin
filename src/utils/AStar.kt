@@ -11,6 +11,10 @@ data class Node<T>(
     fun path(): List<T> = (parent?.path() ?: emptyList()) + value
 }
 
+fun <T> Node<Point>.populateGrid(grid: List<MutableList<T>>, symbol: () -> T) {
+    path().forEach { grid[it.r][it.c] = symbol() }
+}
+
 fun <T> aStar(
     from: T,
     goal: (T) -> Boolean,

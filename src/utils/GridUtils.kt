@@ -28,6 +28,22 @@ data class Point(val r: Int, val c: Int) {
             else -> coordinate
         }
 
+    fun circle(radius: Int): List<Point> {
+        val res = mutableListOf<Point>()
+        for (offset in 0..<radius) {
+            val invOffset = radius - offset
+            res.addAll(
+                listOf(
+                    Point(r + offset, c + invOffset),
+                    Point(r + invOffset, c - offset),
+                    Point(r - offset, c - invOffset),
+                    Point(r - invOffset, c + offset),
+                )
+            )
+        }
+        return res
+    }
+
     fun neighbours(): List<Point> = Direction.entries.map { move(it) }
     fun directedNeighbours() = Direction.entries.associateWith { move(it) }
     fun directedNeighbours2() = Direction2.entries.associateWith { move(it) }
